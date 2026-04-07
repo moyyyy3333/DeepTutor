@@ -1,17 +1,19 @@
 """Subagent manager for background task execution."""
 
+from __future__ import annotations
+
 import asyncio
 import json
-import uuid
 from pathlib import Path
 from typing import Any
+import uuid
 
 from loguru import logger
 
 from deeptutor.tutorbot.agent.tools.registry import build_base_tools
 from deeptutor.tutorbot.bus.events import InboundMessage
 from deeptutor.tutorbot.bus.queue import MessageBus
-from deeptutor.tutorbot.config.schema import ExecToolConfig
+from deeptutor.tutorbot.config.schema import ExecToolConfig, WebSearchConfig
 from deeptutor.tutorbot.providers.base import LLMProvider
 from deeptutor.tutorbot.utils.helpers import build_assistant_message
 

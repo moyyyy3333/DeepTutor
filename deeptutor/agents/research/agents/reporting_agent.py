@@ -757,7 +757,7 @@ class ReportingAgent(BaseAgent):
                 parts_list = cit_id.replace("CIT-", "").split("-")
                 if len(parts_list) == 2:
                     return (1, int(parts_list[0]), int(parts_list[1]))
-            except:
+            except Exception:
                 pass
             return (999, 999, 999)
 
@@ -1008,7 +1008,7 @@ class ReportingAgent(BaseAgent):
         sources = citation.get("sources", [])
 
         # Tool name display
-        result = f"**RAG**"
+        result = "**RAG**"
         if kb_name:
             result += f" (KB: {kb_name})"
         result += "\n\n"
@@ -1124,7 +1124,7 @@ class ReportingAgent(BaseAgent):
                 parts_list = cit_id.replace("CIT-", "").split("-")
                 if len(parts_list) == 2:
                     return (1, int(parts_list[0]), int(parts_list[1]))
-            except:
+            except Exception:
                 pass
             return (999, 999, 999)
 

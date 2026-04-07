@@ -13,7 +13,6 @@ from deeptutor.agents.question.models import QuestionTemplate
 from deeptutor.core.trace import build_trace_metadata, new_call_id
 from deeptutor.tools.rag_tool import rag_search
 
-
 BATCH_SIZE = 5
 
 

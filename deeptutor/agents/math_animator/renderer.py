@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import asyncio
+from pathlib import Path
 import re
 import sys
-from pathlib import Path
 from typing import Awaitable, Callable
 
 from deeptutor.services.path_service import get_path_service
 
-from .models import RenderResult, RenderedArtifact
+from .models import RenderedArtifact, RenderResult
 from .utils import slugify_filename, trim_error_message
 
 YON_IMAGE_PATTERN = re.compile(
