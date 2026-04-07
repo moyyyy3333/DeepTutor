@@ -1,0 +1,278 @@
+# Instincts generated from https://github.com/moyyyy3333/DeepTutor
+# Generated: 2026-04-07T23:06:29.932Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: DeepTutor-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/moyyyy3333/DeepTutor
+---
+
+# DeepTutor Commit Length
+
+## Action
+
+Write moderate-length commit messages (~79 characters)
+
+## Evidence
+
+- Average commit message length: 79 chars
+- Based on 2 commits
+
+---
+id: DeepTutor-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/moyyyy3333/DeepTutor
+---
+
+# DeepTutor Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: DeepTutor-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/moyyyy3333/DeepTutor
+---
+
+# DeepTutor Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: DeepTutor-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/moyyyy3333/DeepTutor
+---
+
+# DeepTutor Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: DeepTutor-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/moyyyy3333/DeepTutor
+---
+
+# DeepTutor Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: deeptutor-instinct-file-naming
+trigger: "When creating a new Python file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct File Naming
+
+## Action
+
+Name the file using snake_case
+
+## Evidence
+
+- Pattern in namingConventions.files
+
+---
+id: deeptutor-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: deeptutor-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: deeptutor-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: deeptutor-instinct-import-style
+trigger: "When importing modules within the package"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Import Style
+
+## Action
+
+Use relative imports
+
+## Evidence
+
+- Pattern in importStyle
+
+---
+id: deeptutor-instinct-export-style
+trigger: "When exporting functions or classes"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle
+
+---
+id: deeptutor-instinct-test-location
+trigger: "When adding new tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Test Location
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+
+---
+id: deeptutor-instinct-single-package-structure
+trigger: "When organizing source code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Single Package Structure
+
+## Action
+
+Use a single-package structure with main folders such as 'deeptutor' and 'deeptutor_cli'
+
+## Evidence
+
+- Pattern in architecture.folderStructure.commonFolders
+
+---
+id: deeptutor-instinct-commit-format
+trigger: "When writing a commit message"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: moyyyy3333/DeepTutor
+---
+
+# Deeptutor Instinct Commit Format
+
+## Action
+
+Use freeform commit messages without a required prefix
+
+## Evidence
+
+- Pattern in commits.prefixes
+- Seen in commit 'Initial plan'
+
