@@ -20,7 +20,6 @@ from deeptutor.core.stream_bus import StreamBus
 
 
 def _install_module(monkeypatch: pytest.MonkeyPatch, fullname: str, **attrs: Any) -> types.ModuleType:
-    __import__("src")
     parts = fullname.split(".")
     for idx in range(1, len(parts)):
         pkg_name = ".".join(parts[:idx])
@@ -432,29 +431,41 @@ async def test_deep_research_capability_requires_explicit_config_and_streams_tra
     class FakeResearchPipeline:
         def __init__(self, **kwargs: Any) -> None:
             captured["pipeline_init"] = kwargs
+            self.queue = SimpleNamespace(
+                blocks=[
+                    SimpleNamespace(sub_topic="subtopic1", overview="overview1"),
+                ]
+            )
+
+        async def _phase1_planning(self, topic: str) -> str:
+            return topic
 
         async def run(self, topic: str) -> dict[str, Any]:
-            await captured["pipeline_init"]["progress_callback"](
-                {"status": "gathering evidence", "stage": "researching", "block_id": "block_1"}
-            )
-            await captured["pipeline_init"]["trace_callback"](
-                {
-                    "event": "llm_call",
-                    "state": "running",
-                    "agent_name": "rephrase_agent",
-                    "stage": "rephrase",
-                }
-            )
-            await captured["pipeline_init"]["trace_callback"](
-                {
-                    "event": "tool_call",
-                    "phase": "researching",
-                    "tool_name": "web_search",
-                    "tool_args": {"query": "agent-native tutoring"},
-                    "label": "Use web_search",
-                    "call_id": "research-tool-1",
-                }
-            )
+            progress_cb = captured["pipeline_init"].get("progress_callback")
+            trace_cb = captured["pipeline_init"].get("trace_callback")
+            if progress_cb:
+                progress_cb(
+                    {"status": "gathering evidence", "stage": "researching", "block_id": "block_1"}
+                )
+            if trace_cb:
+                await trace_cb(
+                    {
+                        "event": "llm_call",
+                        "state": "running",
+                        "agent_name": "rephrase_agent",
+                        "stage": "rephrase",
+                    }
+                )
+                await trace_cb(
+                    {
+                        "event": "tool_call",
+                        "phase": "researching",
+                        "tool_name": "web_search",
+                        "tool_args": {"query": "agent-native tutoring"},
+                        "label": "Use web_search",
+                        "call_id": "research-tool-1",
+                    }
+                )
             return {"report": f"Report about {topic}", "metadata": {"citations": 3}}
 
     def fake_load_config_with_main(_: str) -> dict[str, Any]:
@@ -495,6 +506,9 @@ async def test_deep_research_capability_requires_explicit_config_and_streams_tra
             "mode": "report",
             "depth": "standard",
             "sources": ["kb", "web", "papers"],
+            "confirmed_outline": [
+                {"title": "subtopic1", "overview": "overview1"},
+            ],
         },
         language="en",
     )
